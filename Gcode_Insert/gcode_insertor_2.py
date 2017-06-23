@@ -26,13 +26,13 @@ file_postfix = ".gcode"
 usr_input = input("Please specify the name of the file without the postfix: ")
 gcode_file_name = usr_input + file_postfix
 # file_object = open(gcode_file_name, "r+")
-file_dst = open(usr_input + "_copy" + file_postfix, "w")
+# file_dst = open(usr_input + "_copy" + file_postfix, "w")
 Z_val = -100
 original_Z = 0
 is_first_time_match = True
 layers_to_insert = 3
 layers_till_insert = 0
-instructions_to_insert = "G28\n"
+instructions_to_insert = "G28\nG4 P500\n"
 
 
 for line in fileinput.FileInput("/home/ed/Desktop/3D_Printing_Defect_Detection/Gcode_Insert/left_half_test_maker.gcode", inplace=1):
