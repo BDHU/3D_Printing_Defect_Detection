@@ -32,7 +32,7 @@ original_Z = 0
 is_first_time_match = True
 layers_to_insert = 3
 layers_till_insert = 0
-instructions_to_insert = "G4 P500\n"
+instructions_to_insert = "G4 P500000\n"
 
 
 for line in fileinput.FileInput("/home/ed/Desktop/3D_Printing_Defect_Detection/Gcode_Insert/left_half_test.gcode", inplace=1):
