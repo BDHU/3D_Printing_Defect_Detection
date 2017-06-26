@@ -32,10 +32,10 @@ original_Z = 0
 is_first_time_match = True
 layers_to_insert = 3
 layers_till_insert = 0
-instructions_to_insert = "G4 P500000\n"
+instructions_to_insert = "G4 P500000;\n"
 
 
-for line in fileinput.FileInput("/home/ed/Desktop/3D_Printing_Defect_Detection/Gcode_Insert/left_half_test.gcode", inplace=1):
+for line in fileinput.FileInput("/Users/ed/Desktop/3D_Printing_Defect_Detection/Gcode_Insert/left_half_test.gcode", inplace=1):
 	if is_first_time_match:
 		original_Z = get_init_Z(line)
 		Z_val = original_Z
