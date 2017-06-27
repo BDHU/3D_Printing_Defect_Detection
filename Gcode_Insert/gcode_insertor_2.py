@@ -33,7 +33,7 @@ def get_init_Z(line):
 			return float(get_Z_val(line))
 	return -1
 
-def find_F(line):
+def get_F(line):
 	return get_all_params(line, 4)
 
 # this is assuming that the line contain comments or otherwise we are screwed
@@ -50,23 +50,17 @@ gcode_file_name = usr_input + file_postfix
 Z_val = -100
 original_Z = 0.0
 is_first_time_match = True
-layers_to_insert = 3
+layers_to_insert = 1
 layers_till_insert = 0
-instructions_to_insert = "G28 X Y;\n"
+instructions_to_insert = "G28 X Y; Home both X and Y\nG4 P500; Wait for given time\n"
 full_file_path = get_current_pwd() + '/' + gcode_file_name
+F_threshold = 1380
 
 for line in fileinput.FileInput(full_file_path, inplace=1):
-	# if is_first_time_match:
-	# 	original_Z = get_init_Z(line)
-	# 	Z_val = original_Z
-	# 	if original_Z != -1:
-	# 		is_first_time_match = False
-	# 	print(line, end='')
-	# 	continue
 	if match_patterns(line):
 		Z_val = get_Z_val(line)
 		dif = Z_val - original_Z
-		if dif != 0:
+		if dif != 0 and get_F(line) == F_threshold:
 			# print("dif: ", dif, i, file=sys.stderr)
 			original_Z = Z_val
 			layers_till_insert = layers_till_insert + 1
