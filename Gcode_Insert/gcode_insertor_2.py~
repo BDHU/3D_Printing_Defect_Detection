@@ -73,5 +73,5 @@ for line in fileinput.FileInput(full_file_path, inplace=1):
 	print(line, end='')
 
 file = open("layer_number.txt","w")
-file.write(str(num_layers))
+file.write(num_layers)
 file.close()
